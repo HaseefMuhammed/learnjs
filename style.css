@@ -1,0 +1,54 @@
+body {
+  background-color: #f7f7f7;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 700px;
+}
+
+h1 {
+  color: #007bff;
+  animation: title-anim 1s ease-in-out infinite alternate;
+}
+
+@keyframes title-anim {
+  0% { color: #007bff; }
+  100% { color: #28a745; }
+}
+
+.progress-bar {
+  transition: width 1s ease-in-out;
+}
+
+.badge-img {
+  width: 80px;
+  height: 80px;
+  transition: transform 0.3s;
+}
+
+.badge-img:hover {
+  transform: scale(1.1);
+}
+
+button {
+  width: 220px;
+  transition: background-color 0.3s;
+}
+
+#motivation {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  animation: fade-in 2s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

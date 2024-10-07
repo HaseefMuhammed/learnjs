@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Generator</title>
+    <style>
+      body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #4A90E2;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #357ABD;
+}
+
+.certificate {
+    /* display: none; */
+    margin-top: 20px;
+    padding: 20px;
+    border: 5px solid #4A90E2;
+    background-color: #e1f5fe;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#certName {
+    color: #4A90E2;
+    font-size: 34px;
+    margin: 10px 0;
+}
+
+#downloadBtn {
+    margin-top: 20px;
+    background-color: #ff5722;
+}
+
+#downloadBtn:hover {
+    background-color: #e64a19;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Certificate</h1>
+        <form id="userForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <button type="submit" id="submitBtn">Generate Certificate</button>
+        </form>
+
+        <div id="certificate" class="certificate">
+            <h2>Certificate of JavaScript Master Cource</h2>
+            <img src="images/code with ats logo.png" alt="Company Logo" class="logo">
+            <p>This certificate is awarded to</p>
+            <h3 id="certName"></h3>
+            <!-- <p>Phone: <span id="certPhone"></span></p> -->
+            <!-- <p>Email: <span id="certEmail"></span></p> -->
+            <button id="downloadBtn">Download Certificate</button>
+        </div>
+    </div>
+
+    <!-- Latest html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+document.getElementById('userForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get user input
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+
+    // Display certificate
+    document.getElementById('certName').textContent = name;
+    document.getElementById('certPhone').textContent = phone;
+    document.getElementById('certEmail').textContent = email;
+    document.getElementById('certificate').style.display = 'block';
+});
+
+document.getElementById('downloadBtn').addEventListener('click', function() {
+    // Convert certificate to image and download
+    const certificate = document.getElementById('certificate');
+    html2canvas(certificate).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'certificate.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+});
+
+    </script>
+</body>
+</html>
